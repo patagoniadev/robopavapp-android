@@ -1,0 +1,37 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="patagoniadev.robopavapp.MainActivity$PlaceholderFragment">
+
+    <Button
+        android:id="@+id/btnMate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="80dp"
+        android:text="MATE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnCafe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="CAFE"
+        app:layout_constraintStart_toStartOf="@+id/btnMate"
+        app:layout_constraintTop_toBottomOf="@+id/btnMate" />
+
+    <Button
+        android:id="@+id/btnTe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:text="TE"
+        app:layout_constraintStart_toStartOf="@+id/btnCafe"
+        app:layout_constraintTop_toBottomOf="@+id/btnCafe" />
+
+</android.support.constraint.ConstraintLayout>
