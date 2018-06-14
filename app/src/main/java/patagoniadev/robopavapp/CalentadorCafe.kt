@@ -1,19 +1,36 @@
 package patagoniadev.robopavapp
 
 import android.util.Log
-import com.google.gson.Gson
-import okhttp3.MediaType
-import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CalentadorCafe : Calentador{
 
-    val temperatura = 100
-    val jsonRoboPava = Gson().toJson(RoboPavaPOJO(temperatura = temperatura))
-    val request = RequestBody.create(MediaType.parse("application/json"),jsonRoboPava)
+    val temperatura = 80
+    val pavaApi = ClienteRoboPava().getClienteRoboPava()
+
+    private fun calentarLlamada(): Call<RoboPavaPOJO> {
+        return pavaApi.calentar()
+    }
 
     fun calentar() {
-        val response = ClienteRoboPava().apiRoboPava.calentar(request)
-        Log.d("Respuesta Servidor", response.toString())
+        val call = calentarLlamada()
+        val response = call.enqueue(object : Callback<RoboPavaPOJO> {
+            override fun onResponse(call : Call<RoboPavaPOJO>, response: Response<RoboPavaPOJO>){
+                if (response == null || !response.isSuccessful) {
+                    Log.e("pava", response.toString())
+                    throw RuntimeException("No se pudo conectar")
+                }
+
+                val pava = response.body()
+                Log.e("Pava", pava.toString())
+            }
+
+            override fun onFailure(call: Call<RoboPavaPOJO>?, t: Throwable?) {
+                t!!.printStackTrace()
+            }
+        })
     }
 
 }

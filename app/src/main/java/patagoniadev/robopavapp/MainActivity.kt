@@ -16,6 +16,10 @@ import android.widget.Button
 import android.widget.Toast
 
 import kotlinx.android.synthetic.main.activity_main.*
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
@@ -111,6 +115,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             botonCafe.setOnClickListener {
+
+
                 val unCafe = CalentadorCafe()
                 unCafe.calentar()
                 Toast.makeText(getActivity(), "Calentando para un cafe a " + unCafe.temperatura, Toast.LENGTH_SHORT).show()
@@ -121,6 +127,7 @@ class MainActivity : AppCompatActivity() {
                 unTe.calentar()
                 Toast.makeText(getActivity(), "Calentando para un te a " + unTe.temperatura, Toast.LENGTH_SHORT).show()
             }
+
             return rootView
         }
 
